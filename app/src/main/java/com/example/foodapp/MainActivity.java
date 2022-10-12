@@ -10,6 +10,7 @@ import android.widget.ArrayAdapter;
 import android.widget.Spinner;
 import android.widget.Toast;
 
+import androidx.appcompat.widget.SearchView;
 import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
@@ -26,6 +27,7 @@ public class MainActivity extends Activity {
     RandomRecipeAdapter randomRecipeAdapter;
     RecyclerView recyclerView;
     Spinner spinner;
+    SearchView searchView;
     List<String> tags = new ArrayList<>();
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -34,6 +36,23 @@ public class MainActivity extends Activity {
 
         dialog =  new ProgressDialog(this);
         dialog.setTitle("Loading...");
+
+        searchView = (SearchView) findViewById(R.id.searchView_home);
+        searchView.setOnQueryTextListener(new SearchView.OnQueryTextListener() {
+            @Override
+            public boolean onQueryTextSubmit(String query) {
+                tags.clear();
+                tags.add(query);
+                manager.getrandomRecipes(randomRecipeResponseListener, tags);
+                dialog.show();
+                return true;
+            }
+
+            @Override
+            public boolean onQueryTextChange(String newText) {
+                return false;
+            }
+        });
 
         spinner = (Spinner) findViewById(R.id.spinner_tags);
         ArrayAdapter arrayAdapter = ArrayAdapter.createFromResource(this,R.array.tags, R.layout.spinner_text);

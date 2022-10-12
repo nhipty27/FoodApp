@@ -37,6 +37,21 @@
         </RelativeLayout>
     </androidx.appcompat.widget.Toolbar>
 
+    <androidx.cardview.widget.CardView
+        android:layout_width="match_parent"
+        android:layout_height="?attr/actionBarSize"
+        android:layout_margin="8dp"
+        app:cardBackgroundColor="@color/orange"
+        app:cardElevation="8dp">
+        <androidx.appcompat.widget.SearchView
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            app:iconifiedByDefault="false"
+            app:searchIcon="@drawable/ic_search"
+            android:id="@+id/searchView_home"
+            app:queryHint="Search your recipe..."/>
+    </androidx.cardview.widget.CardView>
+
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/recycler_random"
         android:layout_margin="4dp"
