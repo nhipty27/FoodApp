@@ -3,6 +3,7 @@ package com.example.foodapp;
 
 import android.app.Activity;
 import android.app.ProgressDialog;
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.AdapterView;
@@ -16,6 +17,7 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.foodapp.Adapters.RandomRecipeAdapter;
 import com.example.foodapp.Listeners.RandomRecipeResponseListener;
+import com.example.foodapp.Listeners.RecipeClickListener;
 import com.example.foodapp.Models.RandomrecipeApiResponse;
 
 import java.util.ArrayList;
@@ -72,7 +74,7 @@ public class MainActivity extends Activity {
             recyclerView = findViewById(R.id.recycler_random);
             recyclerView.setHasFixedSize(true);
             recyclerView.setLayoutManager(new GridLayoutManager(MainActivity.this,1));
-            randomRecipeAdapter = new RandomRecipeAdapter(MainActivity.this, response.recipes);
+            randomRecipeAdapter = new RandomRecipeAdapter(MainActivity.this, response.recipes, recipeClickListener);
             recyclerView.setAdapter(randomRecipeAdapter);
         }
 
@@ -94,6 +96,13 @@ public class MainActivity extends Activity {
         @Override
         public void onNothingSelected(AdapterView<?> adapterView) {
 
+        }
+    };
+
+    private final RecipeClickListener recipeClickListener = new RecipeClickListener() {
+        @Override
+        public void onRecipeClicked(String id) {
+            startActivity(new Intent(MainActivity.this, RecipeDetailActivity.class).putExtra("id",id));
         }
     };
 }

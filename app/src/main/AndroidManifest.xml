@@ -2,8 +2,9 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     package="com.example.foodapp">
-<!--    xac dinh quyen truy cap internet-->
+    <!-- xac dinh quyen truy cap internet -->
     <uses-permission android:name="android.permission.INTERNET" />
+
     <application
         android:allowBackup="true"
         android:dataExtractionRules="@xml/data_extraction_rules"
@@ -14,6 +15,9 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.FoodApp"
         tools:targetApi="31">
+        <activity
+            android:name=".RecipeDetailActivity"
+            android:exported="false" />
         <activity
             android:name=".MainActivity"
             android:exported="true">
