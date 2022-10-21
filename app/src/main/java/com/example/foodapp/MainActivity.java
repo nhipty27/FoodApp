@@ -63,8 +63,6 @@ public class MainActivity extends Activity {
         spinner.setOnItemSelectedListener(spinnerSelectedListener);
 
         manager = new RequestManager(this);
-//        manager.getrandomRecipes(randomRecipeResponseListener);
-//        dialog.show();
     }
 
     private final RandomRecipeResponseListener randomRecipeResponseListener = new RandomRecipeResponseListener() {
